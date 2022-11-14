@@ -78,7 +78,19 @@ This project was developed with:
 - JUnit 5
 - MySQL 8.0.31
 - Lombok 1.18.24
+## Launch guide
+To run this project you'll need:
+- Java 17 or higher
+- MySQL
+- Apache Maven
+- IDE
 
+ 1. Clone the repository.
+ 2. Run in MySQL Command Line Client the following command to set up the database:
+  <br/>```source src/main/resources/db.sql```
+ 3. Change ```spring.datasource.password``` and ```spring.datasource.username``` to your username and password.
+ 4. To start the application run:
+ <br/> ```java -jar target/movie-app-0.0.1-SNAPSHOT.jar```
 
 
 
