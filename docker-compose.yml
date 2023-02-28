@@ -1,0 +1,29 @@
+version: "3"
+services:
+  movie-reviewer:
+    image: katebarmina/movie-reviewer
+    ports:
+      - "8080:8080"
+    networks:
+      - reviewer
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 12345abc
+      MYSQL_DB: movie_review_app
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:8
+    volumes:
+      - movie-reviewer-mysql-data:/var/lib/mysql
+    networks:
+      - reviewer
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345abc
+      - MYSQL_DATABASE=movie_review_app
+volumes:
+  movie-reviewer-mysql-data:
+networks:
+  reviewer:
