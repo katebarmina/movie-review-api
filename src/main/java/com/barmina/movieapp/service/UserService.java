@@ -6,15 +6,15 @@ import javax.management.InstanceAlreadyExistsException;
 import java.util.List;
 
 public interface UserService {
-  User create(User user) throws InstanceAlreadyExistsException;
+    User create(User user) throws InstanceAlreadyExistsException;
 
-  List<User> getAll();
+    List<User> getAll();
 
-  User findByEmail(String email);
+    User findByEmail(String email);
 
-  User getById(Integer id);
+    User getById(Integer id);
 
-  User update(User user, Integer id);
+    User update(User user, Integer id);
 
-  void deleteById(Integer id);
+    void deleteById(Integer id);
 }

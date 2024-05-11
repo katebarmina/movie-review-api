@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface ReviewService {
 
-  Review create(Integer id, Review review);
+    Review create(Integer id, Review review);
 
-  List<Review> getAllByMovieId(Integer movieId);
+    List<Review> getAllByMovieId(Integer movieId);
 
-  Review getByMovieIdAndReviewId(Integer movieId, Integer reviewId);
+    Review getByMovieIdAndReviewId(Integer movieId, Integer reviewId);
 
-  void deleteByReviewIdAndMovieId(Integer movieId, Integer reviewId);
+    void deleteByReviewIdAndMovieId(Integer movieId, Integer reviewId);
 }

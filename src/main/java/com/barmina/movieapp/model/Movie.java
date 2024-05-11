@@ -33,10 +33,6 @@ public class Movie {
   @Column
   private String genre;
 
-  @Column
-  @NotNull(message = "Rating is mandatory.")
-  private Double rating;
-
   @Column private String image;
 
   @Column(name = "movie_language")
@@ -50,4 +46,11 @@ public class Movie {
   @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
   @JsonIgnore
   private List<Review> reviews;
+
+  @Column
+  private Double rating;
+
+  @Column(name = "num_of_reviews")
+  private int numOfReviews;
+
 }

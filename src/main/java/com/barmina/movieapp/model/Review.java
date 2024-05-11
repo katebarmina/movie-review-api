@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,26 +19,34 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "reviews")
 public class Review {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column
-  Integer id;
 
-  @Column
-  @Size(min = 10, max = 400, message = "Content must be more than 10 and less than 400 symbols.")
-  @NotBlank(message = "Content is mandatory.")
-  String content;
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column
+    Integer id;
 
-  @ManyToOne
-  @JsonIgnore
-  @JoinColumn(name = "user_id")
-  private User user;
+    @Column
+    @Size(min = 10, max = 400, message = "Content must be more than 10 and less than 400 symbols.")
+    @NotBlank(message = "Content is mandatory.")
+    String content;
 
-  @Column(name = "review_date")
-  private LocalDateTime time;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
+    private User user;
 
-  @ManyToOne
-  @JoinColumn(name = "movie_id")
-  @JsonIgnore
-  private Movie movie;
+    @Column(name = "review_date")
+    private LocalDateTime time;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    @JsonIgnore
+    private Movie movie;
+
+    @NotNull
+    @Min(0)
+    @Max(10)
+    @Column
+    private Double rating;
+
 }

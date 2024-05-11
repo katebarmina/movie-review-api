@@ -14,17 +14,17 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-// @RequiredArgsConstructor
 @AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-  private final UserRepository repository;
+    private final UserRepository repository;
 
-  @Override
-  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    Optional<User> optionalUser = Optional.ofNullable(repository.findByEmail(email));
-    return new UserDetailsImpl(
-        optionalUser.orElseThrow(
-            () -> new EmailNotFoundException("User with email " + email + " doesn't exist.")));
-  }
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<User> optionalUser = Optional.ofNullable(repository.findByEmail(email));
+        return new UserDetailsImpl(
+                optionalUser.orElseThrow(
+                        () -> new EmailNotFoundException("User with email " + email + " doesn't exist.")));
+    }
+
 }

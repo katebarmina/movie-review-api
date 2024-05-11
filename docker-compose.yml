@@ -17,13 +17,14 @@ services:
   mysqldb:
     image: mysql:8
     volumes:
-      - movie-reviewer-mysql-data:/var/lib/mysql
+      - ./create-db-schema.sql:/docker-entrypoint-initdb.d/create-db-schema.sql
+      - movie-reviewer-data:/var/lib/mysql
     networks:
       - reviewer
     environment:
       - MYSQL_ROOT_PASSWORD=12345abc
       - MYSQL_DATABASE=movie_review_app
 volumes:
-  movie-reviewer-mysql-data:
+  movie-reviewer-data:
 networks:
   reviewer:

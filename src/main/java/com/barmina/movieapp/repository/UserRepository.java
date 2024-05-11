@@ -8,5 +8,7 @@ import javax.validation.constraints.Email;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-  User findByEmail(@Email String email);
+
+    User findByEmail(@Email String email);
+
 }

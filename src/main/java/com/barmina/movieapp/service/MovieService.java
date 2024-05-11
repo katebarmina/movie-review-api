@@ -6,13 +6,17 @@ import java.util.List;
 
 public interface MovieService {
 
-  Movie create(Movie movie);
+    Movie create(Movie movie);
 
-  List<Movie> getAll();
+    List<Movie> getAll();
 
-  Movie getById(Integer id);
+    Movie getById(Integer id);
 
-  void deleteById(Integer id);
+    void deleteById(Integer id);
 
-  Movie update(Movie newMovie, Integer id);
+    Movie update(Movie newMovie, Integer id);
+
+    boolean existsById(Integer id);
+
+    void updateRating(Movie movie, double rating);
 }

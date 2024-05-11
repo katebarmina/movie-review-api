@@ -19,33 +19,36 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column
-  private Integer id;
 
-  @Email(message = "Email address must be valid.")
-  @Column(unique = true)
-  private String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Integer id;
 
-  @NotBlank(message = "Password is mandatory.")
-  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-  @Column
-  private String password;
+    @Email(message = "Email address must be valid.")
+    @Column(unique = true)
+    private String email;
 
-  @NotBlank(message = "Name is mandatory.")
-  @Column(unique = true)
-  private String name;
+    @NotBlank(message = "Password is mandatory.")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column
+    private String password;
 
-  @Column private Boolean enabled;
+    @NotBlank(message = "Name is mandatory.")
+    @Column(unique = true)
+    private String name;
 
-  @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-  @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-  @Enumerated(EnumType.STRING)
-  @Column(name = "role_name")
-  private Set<Role> roles = new HashSet<>();
+    @Column
+    private Boolean enabled;
 
-  @OneToMany(mappedBy = "user")
-  @JsonIgnore
-  private List<Review> reviews;
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role_name")
+    private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Review> reviews;
+
 }

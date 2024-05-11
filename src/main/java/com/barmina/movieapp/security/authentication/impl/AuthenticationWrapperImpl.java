@@ -10,8 +10,9 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class AuthenticationWrapperImpl implements AuthenticationWrapper {
 
-  @Override
-  public Authentication getAuthentication() {
-    return SecurityContextHolder.getContext().getAuthentication();
-  }
+    @Override
+    public Authentication getAuthentication() {
+        return SecurityContextHolder.getContext().getAuthentication();
+    }
+
 }

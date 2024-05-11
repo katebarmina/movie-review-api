@@ -11,9 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-  @Transactional
-  @Modifying
-  @Query("DELETE FROM Review r WHERE r.id =:reviewId AND r.movie.id =:movieId")
-  void deleteByReviewIdAndMovieId(
-      @Param("reviewId") Integer reviewId, @Param("movieId") Integer movieId);
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Review r WHERE r.id =:reviewId AND r.movie.id =:movieId")
+    void deleteByReviewIdAndMovieId(
+            @Param("reviewId") Integer reviewId, @Param("movieId") Integer movieId);
+
 }
