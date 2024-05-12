@@ -1,29 +1,31 @@
 version: "3"
 services:
-  movie-reviewer:
-    image: katebarmina/movie-reviewer
+  mysqldb:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=11111111
+      - MYSQL_DATABASE=movie_review_app
+    volumes:
+      - ./create-db-schema.sql:/docker-entrypoint-initdb.d/create-db-schema.sql
+      - movie-reviewer-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - reviewer
+  movie-review-api:
+    image: katebarmina/movie-review-api:v1
     ports:
       - "8080:8080"
     networks:
       - reviewer
     environment:
-      MYSQL_HOST: mysql
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 12345abc
-      MYSQL_DB: movie_review_app
+      - MYSQL_HOST=mysqldb
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=11111111
+      - MYSQL_DATABASE=movie_review_app
+      - MYSQL_PORT=3306
     depends_on:
       - mysqldb
-
-  mysqldb:
-    image: mysql:8
-    volumes:
-      - ./create-db-schema.sql:/docker-entrypoint-initdb.d/create-db-schema.sql
-      - movie-reviewer-data:/var/lib/mysql
-    networks:
-      - reviewer
-    environment:
-      - MYSQL_ROOT_PASSWORD=12345abc
-      - MYSQL_DATABASE=movie_review_app
 volumes:
   movie-reviewer-data:
 networks:
